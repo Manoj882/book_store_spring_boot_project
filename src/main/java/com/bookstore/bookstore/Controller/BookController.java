@@ -2,6 +2,7 @@ package com.bookstore.bookstore.Controller;
 
 import com.bookstore.bookstore.entity.Book;
 import com.bookstore.bookstore.service.BookService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +18,7 @@ public class BookController {
     private BookService bookService;
 
     @PostMapping()
-    public ResponseEntity<?> saveDepartment(@RequestBody Book book){
+    public ResponseEntity<?> saveDepartment(@Valid @RequestBody Book book){
         Book response = bookService.saveDepartment(book);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
 

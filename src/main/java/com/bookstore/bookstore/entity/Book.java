@@ -3,7 +3,9 @@ package com.bookstore.bookstore.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,11 +21,15 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int bookId;
+
     @NotEmpty(message = "Please enter book name")
+    @Size(min = 5, message = "minimum length of book name is five")
     private String bookName;
-    @NotEmpty(message = "Please enter book rating")
+
+    @NotNull(message = "Please enter book rating")
     @Positive(message = "Book rating must be positive")
-    private String bookRating;
+    private int bookRating;
+
     @Column(unique = true)
     @NotEmpty(message = "Please enter book code")
     private String bookCode;
