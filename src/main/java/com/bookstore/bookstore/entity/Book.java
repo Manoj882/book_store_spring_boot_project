@@ -1,6 +1,7 @@
 package com.bookstore.bookstore.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -33,5 +34,10 @@ public class Book {
     @Column(unique = true)
     @NotEmpty(message = "Please enter book code")
     private String bookCode;
+
+    @ManyToOne()
+    @JoinColumn(name = "authorId", referencedColumnName = "authorId", nullable = false)
+    @JsonBackReference
+    private Author author;
 
 }
